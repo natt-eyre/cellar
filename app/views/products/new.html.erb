@@ -1,0 +1,8 @@
+<%= simple_form_for @product do |f| %>
+  <%= f.input :name, required: true %>
+  <%= f.input :quantity %>
+  <%= f.input :expiry_date, as: :date, start_year: Date.today.year,
+    end_year: Date.today.year + 90,
+    order: [:day, :month, :year] %>
+  <%= f.submit "Add to my cellar" %>
+<% end %>
