@@ -1,14 +1,16 @@
 class ProductsController < ApplicationController
+  before_action :require_login
+
   def new
     @product = Product.new
   end
 
   def index
-    @products = Product.all
+    @products = current_user.products
   end
 
   def create
-    @product = Product.new(product_params)
+    @product = current_user.products.new(product_params)
     if @product.save
       redirect_to products_path
     else

@@ -2,7 +2,7 @@ require "rails_helper"
 
 feature "User adds a product" do
   scenario "successfully" do
-    visit root_path
+    visit root_path(as: create(:user))
     click_on "Add an item"
     fill_in "Name", with: "Milk"
     fill_in "Quantity", with: "2"
