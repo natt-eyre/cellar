@@ -17,3 +17,18 @@ en:
 
   titles:
     application: Cellar
+
+  products:
+    index:
+      add: Add an item
+    new:
+      add: Add to my cellar
+
+  activerecord:
+    models:
+      product: Product
+    attributes:
+      product:
+        name: Name
+        quantity: Quantity
+        expiry_date: Expiry Date!

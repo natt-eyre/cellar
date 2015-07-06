@@ -3,11 +3,11 @@ require "rails_helper"
 feature "User adds a product" do
   scenario "successfully" do
     visit root_path(as: create(:user))
-    click_on "Add an item"
-    fill_in "Name", with: "Milk"
-    fill_in "Quantity", with: "2"
+    click_on t("products.index.add")
+    fill_in Product.human_attribute_name("name"), with: "Milk"
+    fill_in Product.human_attribute_name("quantity"), with: "2"
     select_date(Date.today + 1.day, from: "product_expiry_date")
-    click_on "Add to my cellar"
+    click_on t("products.new.add")
 
     expect(page.current_path).to eq(products_path)
     expect(page).to have_content("Milk")
