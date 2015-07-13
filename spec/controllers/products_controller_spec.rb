@@ -26,4 +26,27 @@ describe ProductsController do
       expect(Product.last.user).to eq(user)
     end
   end
+
+  describe "#destroy" do
+    it "deletes product" do
+      user = create(:user)
+      product = create(:product, user: user, name: "Milk")
+
+      sign_in_as user
+      expect { delete :destroy, id: product.id }.
+        to change { user.products.count }.by(-1)
+    end
+  end
+
+  describe "#update" do
+    it "updates product" do
+      user = create(:user)
+      product = create(:product, user: user, name: "Milk")
+
+      sign_in_as user
+
+      expect { put :update, id: product.id, product: { 
+        name: "Milkshake"} }.to change { product.reload.name }.to("Milkshake")
+    end
+  end
 end
